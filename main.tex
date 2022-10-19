@@ -1,0 +1,184 @@
+\documentclass{beamer}
+\usefonttheme{serif}
+\usecolortheme{dove} 
+\usetheme{Singapore}
+
+\mode<handout>{\usetheme{Singapore}}
+
+% citas
+\usepackage[spanish]{babel}
+\usepackage{csquotes}
+
+% bibliografía
+\usepackage[
+backend=biber,
+style=apa,
+citestyle=apa
+]{biblatex}
+\addbibresource{references.bib}
+
+% remover los puntos debajo de los títulos
+\setbeamertemplate{navigation symbols}{}
+\setbeamercovered{transparent=20}
+\newcommand*\oldmacro{}%
+\let\oldmacro\insertshorttitle%
+\renewcommand*\insertshorttitle{%
+  \oldmacro\hfill%
+  \insertframenumber}
+
+\setbeamertemplate{headline}
+ {%
+  \begin{beamercolorbox}{section in head/foot}
+  \insertsectionnavigationhorizontal{\textwidth}{}{}
+  \end{beamercolorbox}%
+}
+
+\usepackage{appendixnumberbeamer}
+
+% para la tabla de demanda
+\usepackage[flushleft]{threeparttable}
+\usepackage{multirow} % para usar el generador de tablas
+
+% agregar colores
+\usepackage{xcolor}
+\definecolor{dgreen}{rgb}{0.,0.6,0.}
+\definecolor{white}{rgb}{255, 255, 255}
+
+% para las transicciones transparentes de los bloques
+\setbeamercovered{transparent}
+
+% números de página
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}%remove navigation symbols
+
+%para poder superponer bloques
+\usepackage{tikz}
+\usepackage{listings}
+
+% sistema de ecuaciones/alineación
+\usepackage{amsmath}
+\usepackage{systeme}
+
+% Blocks
+% 1- Block title (background and text)
+\setbeamercolor{block title}{bg={gray!10}, fg={gray!95}}
+% 2- Block body (background)
+\setbeamercolor{block body}{bg={gray!5}}
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+% Notas
+\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{show notes on second screen=right} % Both
+
+% Caption (títulos)
+\usepackage{caption} % para centrar títulos
+\usepackage{tablefootnote} % para incuir
+
+%Información para el título
+\title{Activos digitales y estabilidad financiera}
+\author{Emiliano Giupponi}
+\date{Marzo 2022}
+\titlegraphic{\flushleft\includegraphics[width=0.25\columnwidth]{images/C0/ucema_apaisado.jpg}}
+
+% Add the image inside titlegraphics macro
+%\titlegraphic{
+%\includegraphics[width=\textwidth]{images/C0/20151031_LDD001_0.jpg}
+%}
+\setbeamertemplate{title page}[default][left]{\vspace*{0cm}}{\vspace*{0cm}}
+
+% Definición variable bitcoin
+\def\bitcoinC{\leavevmode\rlap{\hskip.5pt-}B}
+\def\bitcoinA{%
+  \leavevmode
+  \vtop{\offinterlineskip %\bfseries
+    \setbox0=\hbox{B}%
+    \setbox2=\hbox to\wd0{\hfil\hskip-.03em
+    \vrule height .3ex width .15ex\hskip .08em
+    \vrule height .3ex width .15ex\hfil}
+    \vbox{\copy2\box0}\box2}}
+    
+%---------------
+\begin{document}
+
+%###############
+\section*{Título}
+%###############
+
+\begin{frame}[plain]
+
+    \titlepage
+    
+    \note{
+    \begin{itemize}
+        \item Esta es la presentación asociada al documento de tesis "Activos digitales y estabilidad financiera" que presenté a fines de marzo de este año en UCEMA
+        \item La propuesta es presentar un panorama general del documento con sus principales resultados y métodos asociados. En particular, la idea es identificar algunos aspectos vinculados a criptoactivos y estabilidad financiera en países emergentes. 
+    \end{itemize}
+    }
+    
+\end{frame}
+
+%#####################
+\section{C1. Introducción}
+%#####################
+
+\addtocounter{framenumber}{-1}
+\input{chapters/C1}
+
+%###############
+\section{C2. Oferta}
+%###############
+
+\addtocounter{framenumber}{-1}
+\input{chapters/C2}
+
+%################
+\section{C3. Demanda}
+%################
+
+\input{overviews}
+\addtocounter{framenumber}{-1}
+\input{chapters/C3}
+
+%#####################
+\section{C4. Implicancias}
+%#####################
+
+\input{overviews}
+\addtocounter{framenumber}{-1}
+\input{chapters/C4}
+
+%##################################
+\section{C5. Conclusiones}
+%##################################
+
+\input{chapters/C5}
+
+%####################
+%\section{Referencias}
+%####################
+\begin{frame}[allowframebreaks]{Referencias}
+\tiny{
+\printbibliography
+}
+\end{frame}
+
+%########
+\appendix
+%########
+
+\section*{Backup}
+
+\begin{frame}
+\Huge
+\centering
+Anexo
+\end{frame}
+
+\input{annex/A1}
+\input{annex/A2}
+\input{annex/A3}
+\input{annex/A4}
+\input{annex/A5}
+
+\end{document}
